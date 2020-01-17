@@ -56,6 +56,8 @@
       transform: translateY(-3px); /* account for the height of the clock hands */
     }
 
+    
+
     .hand {
       width: 50%;
       height: 6px;
@@ -68,6 +70,18 @@
       transition-timing-function: cubic-bezier(1, 0, 0, 1);
     }
 
+    .hour-hand {
+      background: red;
+    }
+
+    .min-hand {
+      background: green;
+    }
+
+    .second-hand {
+      background: purple;
+    }
+
   </style>
 
   <script>
@@ -75,13 +89,21 @@
   const minuteHand = document.querySelector('.min-hand');
   const hourHand = document.querySelector('.hour-hand');
   
-  function setDate() {
+  function updateDate() { //This is for the seconds hand 
     const date = new Date();
     const seconds = date.getSeconds();
-    const degree = (seconds / 60) * 360;
-    console.log(degree)
+    const secondDegree = ((seconds / 60) * 360) + 90;
+    const minutes = date.getMinutes();
+    const minDegree = ((minutes / 60) * 360) + 90;
+    const hours = date.getHours();
+    const hourDegree = ((hours / 24) * 360) + 90;
+    secondHand.style.transform = `rotate(${secondDegree}deg)`;
+    minuteHand.style.transform = `rotate(${minDegree}deg)`;
+    hourHand.style.transform = `rotate(${hourDegree}deg)`;
+    console.log(date)
   }
   
+  setInterval(updateDate, 1000);
   
 
   </script>
