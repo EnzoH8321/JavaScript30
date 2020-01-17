@@ -1,0 +1,12 @@
+CSS TO USE ->
+
+transform-origin: 
+transform:
+transition:
+transition-timing-function:
+
+JS TO USE ->
+
+setInterval();
+new Date();
+.getSeconds()
