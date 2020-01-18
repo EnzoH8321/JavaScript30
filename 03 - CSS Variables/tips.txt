@@ -1,0 +1,20 @@
+CSS
+
+:root {
+
+}
+
+--base:
+--spacing:
+--blur:
+
+JS
+
+.addEventListener('change', );
+.addEventListener('mousemove', );
+document.documentElement.style.setProperty(``);
+forEach();
+this.dataset;
+this.name   
+
+Going to be using the this keyword a lot
