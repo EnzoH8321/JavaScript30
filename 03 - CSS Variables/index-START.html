@@ -57,16 +57,15 @@
   </style>
 
   <script>
-    const input = document.querySelectorAll('.controls input');
+  const selectInputs = document.querySelectorAll('.controls input')
 
-    function toUpdate() {
-      const suffix = this.dataset.sizing || '';
-      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)// Selects entire document, then sets propert of base,spacing or blur
-
-    }
-    
-    input.forEach(input => input.addEventListener('change', toUpdate));
-    input.forEach(input => input.addEventListener('mousemove', toUpdate));
+  function changeCSS() {
+    const suffix = this.dataset.sizing || '';
+    document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix) //--${this.name} basically just takes modifies the CSS variable and gives it the input.value + suffix 
+  }
+  
+  selectInputs.forEach(inputs => inputs.addEventListener('change', changeCSS));
+  selectInputs.forEach(inputs => inputs.addEventListener('mousemove', changeCSS));
 
   </script>
 

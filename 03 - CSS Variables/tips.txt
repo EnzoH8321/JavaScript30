@@ -10,11 +10,13 @@ CSS
 
 JS
 
+.querySelectorAll()
 .addEventListener('change', );
 .addEventListener('mousemove', );
 document.documentElement.style.setProperty(``);
 forEach();
 this.dataset;
 this.name   
+this.value
 
 Going to be using the this keyword a lot
