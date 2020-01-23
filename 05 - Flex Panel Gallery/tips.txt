@@ -1,0 +1,24 @@
+JS ->
+
+querySelectorAll
+this.classList.toggle
+.addEventListener('transitionend',)
+
+CSS ->
+
+justify-content: Defines how browser distributes space between/around content items alont main-axis of flex container. Usually Horizontal
+
+align-items: Default alignment for items inside the flex container. Usually Vertical.
+
+flex-direction: Defines the main-axis and the direction of the flex container. 
+
+order: Specifies the order of a flexible item relative to the rest of the flexible items inside the container.
+
+align-self: Same thing align items but just for 1 item.
+
+flex-wrap: Specifies whether the flexible items should wrap or not.
+
+flex-flow: Flex-direction and flex-wrap combined together
+
+align-content: Modifies behavior of flex-wrap. Sets how multiple lines are spaced apart from each other when wrap is on. 
+
