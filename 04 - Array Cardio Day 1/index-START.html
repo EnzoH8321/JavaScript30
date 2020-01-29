@@ -51,17 +51,9 @@
     // 3. Sort the inventors by birthdate, oldest to youngest
 
     function compare(a,b) {
-        const birthA = a.year;
-        const birthB = b.year;
-
-        let comparison = 0;
-        if (birthA > birthB) {
-        comparison = -1;
-    }  else if (birthA < birthB) {
-        comparison = 1
+      return a.year > b.year ? 1 : -1; // Negative numbers go closer to 0 index
     }
-      return comparison;
-    }
+      
     
 
     const birthVar = inventors.sort(compare)
@@ -78,14 +70,8 @@
     function compareYears(a,b) {
         const birthA = a.passed - a.year;
         const birthB = b.passed - b.year;
-
-        let comparison = 0;
-        if (birthA > birthB) {
-        comparison = -1;
-    }  else if (birthA < birthB) {
-        comparison = 1
-    }
-      return comparison;
+        return birthA > birthB ? -1 : 1
+        
     }
     
     const yearLive = inventors.sort(compareYears)
@@ -97,6 +83,7 @@
     const getList = document.querySelector('.mw-category');
     const links = Array.from(getList.querySelectorAll('a'));
     const regEx = /de/gi;
+
 
     const de = links.map(link => link.textContent);
 
