@@ -23,28 +23,31 @@ fetch(endpoint)
   .then(blob => blob.json()) // Converts Raw Data into JSON
   .then(data => cities.push(...data)) //Takes each object and pushes it into the cities array.
 
-function findMatches(wordToMatch, cities) {
-  return cities.filter(place => {
+function findMatches(wordToMatch, cities) { // Basically looks at cities array to try and find what user inputted
+  return cities.filter(place => { // Searches each city object in the cities array
+    console.log(wordToMatch)
     //here we need to figure out if the city or state matches what was searched
     const regex = new RegExp(wordToMatch, 'gi'); //Created a regular expression variable. This takes in a variable value
      return place.city.match(regex) || place.state.match(regex) //Checks the object for matches
+     
   })
 }
 
 function displayMatches() {
-  const matchArray = findMatches(this.value, cities);
+  const matchArray = findMatches(this.value, cities); // Calling findmatches(). Finds input based on event listener.
   const html = matchArray.map(place => { 
-    const regex = new RegExp(this.value, 'gi');
-    const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
+    const regex = new RegExp(this.value, 'gi'); //Creates regex based on what was typed by user
+    const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`); //Replaces regex with what user inputs but highlighted
     const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
-    return `
-    <li>
+    // Modifies list elements to show city + state names
+    return  `
+    <li> 
       <span class="name">${cityName}, ${stateName} </span>
       <span class="population">${place.population}</span>
     </li>
     `;
-  }).join('');
-  suggestions.innerHTML = html;
+  }).join(''); // Adds them as an array
+  suggestions.innerHTML = html; // Changes the inner HTML
 }
 
 const searchInput = document.querySelector('.search');
