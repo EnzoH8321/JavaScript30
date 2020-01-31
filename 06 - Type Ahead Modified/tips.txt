@@ -1,13 +1,31 @@
 JS ->
 
-cities = [];
-.json();
+//To Fetch API|:
+
 fetch().then().then() // The then method returns a blob of data. You must convert this data because it is in its raw form
+.json();
 ... operator;
-.filter();
-new RegExp(,);
-.match();
-document.querySelector('.search');
+
+//To create findMatches(wordToMatch, cities) function:
+
+.filter()
+new RegExp();
+.match()
+
+//To create displayMatches() function
+
+findMatches();
+.map();
+new RegExp();
+.replace();
+<span class = "h1">
+<li>
+<span class = "name">
+span class = "population">
+.join()
+.innerHTML
+
+document.querySelector()
 .addEventListener('change', ) //The change event only fires when you off the input. For example clicking outside the element
 .addEventListener('keyup', ) //Fires when a key is pressed. Indicates which key is pressed
 this.value;
