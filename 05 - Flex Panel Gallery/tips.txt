@@ -22,3 +22,16 @@ flex-flow: Flex-direction and flex-wrap combined together
 
 align-content: Modifies behavior of flex-wrap. Sets how multiple lines are spaced apart from each other when wrap is on. 
 
+ function toggleOpen() {
+    this.classList.toggle('open');
+  }
+
+  function toggleActive(e) {
+    if (e.propertyName.includes('flex')) {
+      this.classList.toggle('open-active')
+    }
+  }
+
+  panels.forEach(panel => panel.addEventListener('click', toggleOpen))
+  panels.forEach(panel => panel.addEventListener('transitionend', toggleActive))
+
