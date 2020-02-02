@@ -37,11 +37,15 @@ function findMatches(wordToMatch, cities) {
 //Displays Matches
 
 function displayMatches() {
-  const matchArray = findMatches(this.value, cities);
-  const html = matchArray.map(map => {
+  const matchArray = findMatches(this.value, cities); //
+
+  const html = matchArray.map(map => { // The map argument cycles through each object
+    const regex = new RegExp(this.value, 'gi');
+    const cityName = map.city.replace(regex, `<span class="hl">${this.value}</span>`);
+    const stateName = map.state.replace(regex, `<span class="hl">${this.value}</span>`);
     return `
       <li>
-        <span class ="name">${map.city}, ${map.state}</span>
+        <span class ="name">${cityName}, ${stateName}</span>
         <span class ="population">${map.population}</span>
       </li>
     `
