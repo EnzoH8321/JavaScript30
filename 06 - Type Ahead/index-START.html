@@ -28,7 +28,7 @@ fetch(endpoint)
 //To Find Matches
 
 function findMatches(wordToMatch, cities) {
-  return cities.filter(place => {
+  return cities.filter(place => { // Filter cycles through each city object in the array
     const regex = new RegExp(wordToMatch, 'gi');
     return place.city.match(regex) || place.state.match(regex);
   })
