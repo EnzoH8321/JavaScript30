@@ -21,11 +21,39 @@ const cities = [];
 
 fetch(endpoint)
 .then(event => event.json())
-.then(event2 => cities.push(...event2))
+.then(event2 => cities.push(...event2));
+
+
 
 //To Find Matches
 
-function function() 
+function findMatches(wordToMatch, cities) {
+  return cities.filter(place => {
+    const regex = new RegExp(wordToMatch, 'gi');
+    return place.city.match(regex) || place.state.match(regex);
+  })
+}; 
+
+//Displays Matches
+
+function displayMatches() {
+  const matchArray = findMatches(this.value, cities);
+  const html = matchArray.map(map => {
+    return `
+      <li>
+        <span class ="name">${map.city}, ${map.state}</span>
+        <span class ="population">${map.population}</span>
+      </li>
+    `
+  }).join('');
+  suggestionInput.innerHTML = html;
+}
+
+const searchInput = document.querySelector('.search');
+const suggestionInput = document.querySelector('.suggestions');
+
+searchInput.addEventListener('change', displayMatches);
+searchInput.addEventListener('keyup',displayMatches);
 
 </script>
 </body>
