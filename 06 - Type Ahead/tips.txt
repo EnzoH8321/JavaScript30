@@ -6,7 +6,7 @@ fetch().then().then() // The then method returns a blob of data. You must conver
 .json();
 ... operator;
 
-//To create findMatches(wordToMatch, cities) function. Filter cycles through each city object in the array
+//To create findMatches(wordToMatch, cities) function. Filter cycles through each city object in the array to match user input to the city or state property
 
 .filter()
 new RegExp();
