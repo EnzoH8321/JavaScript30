@@ -6,7 +6,7 @@ fetch().then().then() // The then method returns a blob of data. You must conver
 .json();
 ... operator;
 
-//To create findMatches(wordToMatch, cities) function:
+//To create findMatches(wordToMatch, cities) function. Filter cycles through each city object in the array to match user input to the city or state property
 
 .filter()
 new RegExp();
@@ -29,3 +29,6 @@ document.querySelector()
 .addEventListener('change', ) //The change event only fires when you off the input. For example clicking outside the element
 .addEventListener('keyup', ) //Fires when a key is pressed. Indicates which key is pressed
 this.value;
+
+
+this.value IS WHATEVER THE PERSON typed into the text input
