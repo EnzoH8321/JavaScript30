@@ -1,0 +1,7 @@
+.some() -> Goes over each element in an array to see if at least one element contains the included arguments.
+
+.every() -> tests whether ALL elements in the array pass the test implemented by the provided function
+
+.find() -> method returns the value of the first element in the provided array that satisfies the provided testing function
+
+.findIndex() -> method returns the index of the first element in the array that satisfies the provided testing function. Otherwise, it returns -1, indicating that no element passed the test
