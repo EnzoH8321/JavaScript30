@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+</head>
+<body>
+<canvas id="draw" width="800" height="800"></canvas> // Canvas Element
+<script>
+const canvas = document.querySelector('#draw'); //Grabs the correct DOM element
+const ctx = canvas.getContext('2d'); //Grabs the canvas DOM element and gives it a context. YOU DONT DRAW ON THE CANVAS ITSELF BUT ON THE CONTEXT!. This is where you will do your drawing
+canvas.width = window.innerWidth; // .innerWidth returns the interior width of the window in pixels
+canvas.height = window.innerHeight; //.innerHeight returns the interior height of the window in pixels
+ctx.strokeStyle = '#BADA55'; // .strokestyle returns the color,gradient or pattern used for strokes
+ctx.lineJoin = 'round'; // sets or returns the type of corner created, when two lines meet
+ctx.lineCap = 'round'; // determines the shape used to draw the end points of lines
+ctx.lineWidth = 100; // sets the thickness of lines
+// ctx.globalCompositeOperation = 'multiply';
+
+let isDrawing = false; // Determines when draw function is activated. Dependent on 'mousedown' event listener
+let lastX = 0; // Last X coordinate. Where line ends on X coordinate
+let lastY = 0; // Last Y coordinate. Where line ends on Y coordinate
+let hue = 0; // Hue, Saturation, Lightness
+let direction = true; // Controls when line width increments or decrements
+
+function draw(e) {
+  if (!isDrawing) return; // stop the fn from running when they are not moused down
+  console.log(e);
+  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+  ctx.beginPath(); // method of the Canvas 2D API starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path
+  // start from
+  ctx.moveTo(lastX, lastY); // This is where the line starts
+  // go to
+  ctx.lineTo(e.offsetX, e.offsetY); // adds a straight line to the current sub-path by connecting the sub-path's last point to the specified (x, y) coordinates
+  ctx.stroke(); // strokes (outlines) the current or given path with the current stroke style.
+  [lastX, lastY] = [e.offsetX, e.offsetY];
+
+  hue++; // Increments hue value, thereby changing its color
+  if (hue >= 360) {
+    hue = 0;
+  }
+  if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) { // Controls exactly when line width will change size. Starts at 100 then due to bang operator changing value to false, it decrements until it gets to 1. Once it hits 1, bang operator reverses the direction to true again and then it starts incrementing. 
+    direction = !direction; // Bang operator reverses the variable
+  }
+
+  if(direction) {
+    ctx.lineWidth++; //Increments linewidth, making it larger
+  } else {
+    ctx.lineWidth--; // Decrements linewidth, making it smaller
+  }
+
+}
+
+canvas.addEventListener('mousedown', (e) => {
+  isDrawing = true;
+  [lastX, lastY] = [e.offsetX, e.offsetY]; // Do this so when you hit the mouse, you are starting from where the points is. Offset is a object property from the Mouse Event
+});
+
+
+canvas.addEventListener('mousemove', draw); // fired at an element when a pointing device (usually a mouse) is moved while the cursor's hotspot is inside it
+canvas.addEventListener('mouseup', () => isDrawing = false); // fired at an Element when a button on a pointing device (such as a mouse or trackpad) is released while the pointer is located inside it
+canvas.addEventListener('mouseout', () => isDrawing = false); // fired  at an Element when a pointing device (usually a mouse) is used to move the cursor so that it is no longer contained within the element or one of its children.
+
+</script>
+
+<style>
+  html, body {
+    margin: 0;
+  }
+</style>
+
+</body>
+</html>

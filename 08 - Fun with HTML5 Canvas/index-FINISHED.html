@@ -9,12 +9,12 @@
 <script>
 const canvas = document.querySelector('#draw'); //Grabs the correct DOM element
 const ctx = canvas.getContext('2d'); //Grabs the canvas DOM element and gives it a context
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-ctx.strokeStyle = '#BADA55';
-ctx.lineJoin = 'round';
-ctx.lineCap = 'round';
-ctx.lineWidth = 100;
+canvas.width = window.innerWidth; // .innerWidth returns the interior width of the window in pixels
+canvas.height = window.innerHeight; //.innerHeight returns the interior height of the window in pixels
+ctx.strokeStyle = '#BADA55'; // .strokestyle returns the color,gradient or pattern used for strokes
+ctx.lineJoin = 'round'; // sets or returns the type of corner created, when two lines meet
+ctx.lineCap = 'round'; // determines the shape used to draw the end points of lines
+ctx.lineWidth = 100; // sets the thickness of lines
 // ctx.globalCompositeOperation = 'multiply';
 
 let isDrawing = false;
@@ -27,12 +27,12 @@ function draw(e) {
   if (!isDrawing) return; // stop the fn from running when they are not moused down
   console.log(e);
   ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-  ctx.beginPath();
+  ctx.beginPath(); // method of the Canvas 2D API starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path
   // start from
-  ctx.moveTo(lastX, lastY);
+  ctx.moveTo(lastX, lastY); // begins a new sub-path at the point specified by the given (x, y) coordinates
   // go to
-  ctx.lineTo(e.offsetX, e.offsetY);
-  ctx.stroke();
+  ctx.lineTo(e.offsetX, e.offsetY); // adds a straight line to the current sub-path by connecting the sub-path's last point to the specified (x, y) coordinates
+  ctx.stroke(); // strokes (outlines) the current or given path with the current stroke style.
   [lastX, lastY] = [e.offsetX, e.offsetY];
 
   hue++;
