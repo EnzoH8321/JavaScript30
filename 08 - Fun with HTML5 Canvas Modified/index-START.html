@@ -2,11 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>HTML5 Canvas</title>
+  <title>HTML5 Canvas / Modified</title>
 </head>
 <body>
-<canvas id="draw" width="800" height="800"></canvas>
+<canvas id="draw" width="800" height="800"></canvas> <!--Size of the Canvas. -->
 <script>
+const canvas = document.querySelector('#draw'); // Gets Canvas ID from DOM
+const ctx = canvas.getContext('2d'); // Returns a drawing context on the Canvas;
+
+canvas.width = window.innerWidth; //Canvas becomes width of Window
+canvas.height = window.innerHeight; // Canvas becomes height of Window
+
+ctx.strokeStyle = '#BADA55'; // Returns the color, gradient or pattern used for strokes;
+ctx.lineJoin = 'round'; // Determines the shape used to join two line segments where they meet;
+ctx.lineCap = 'round'; // Determines the shape used to draw the end point of lines;
+ctx.lineWidth = 100; // Determines Line Width
+
+
+let isDrawing = false; // Tell us if its good to draw;
+let lastX = 0; // Shows last X position
+let lastY = 0; //Shows last Y position
+let hue = 0; // Allows the colors to change
+let direction = true; // Boolean to control when line get bigger or smaller
+
+function draw(e) {
+  if (!isDrawing) return; //Stop function from running when not moused down
+  
+  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`; // Gives the line color
+  ctx.beginPath(); // Begins a path, or resets the current path
+  ctx.moveTo(lastX, lastY); // Moves the path to the specified point in the canvas, without creating a line. Basically start from because takes arguments from lastX,lastY
+  ctx.lineTo(e.offsetX, e.offsetY); // Adds a new point and creates a line TO that point FROM the last specified point in the canvas (this method does not draw the line). Basically go to 
+  ctx.stroke(); // Actually draws the path you have defined with the moveTo() and lineTo() methods. 
+
+  // These 2 basically change the start location of the line
+  [lastX, lastY] = [e.offsetX, e.offsetY];
+  
+  hue++;
+
+  if (hue >= 360) {
+    hue = 0;
+  }
+
+  if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+    direction = !direction;
+  }
+
+  if(direction) {
+    ctx.lineWidth++
+  } else {
+    ctx.lineWidth--
+  }
+
+  console.log(ctx.lineWidth);
+}
+
+
+
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mousedown', (e) => {
+  isDrawing = true;
+  [lastX, lastY] = [e.offsetX, e.offsetY] // This is important. Updates the lastX,LastY to where you place the pointer BEFORE the draw function is called. Basically it lets you start line anywhere
+});
+canvas.addEventListener('mouseup', () => isDrawing = false);
+
 </script>
 
 <style>
