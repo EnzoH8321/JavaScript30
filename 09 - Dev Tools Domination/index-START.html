@@ -18,26 +18,36 @@
     }
 
     // Regular
-
+    console.log('Hello')
     // Interpolated
-
+    console.log('Hello, my name is %s', 'Enzo') // Using %s interpolates the second argument
     // Styled
-
+    console.log('%c I am some great Text!', 'font-size:30px; background:red; ') // Everything after %c gets Styled
     // warning!
-
+    console.warn('Oh, No!!!') // Shows Warning
     // Error :|
-
+    console.error('Show Error');
     // Info
-
+    console.info('Shows the blue info button');
     // Testing
-
+    console.assert(1 === 2, 'That is wrong') // Important, only fires if it detects incorrect
     // clearing
-
+    //console.clear(); //Clears the console
     // Viewing DOM Elements
-
+    //console.dir(exampleHere) // Allows you to view DOM Elements
     // Grouping together
+    dogs.forEach(dog => { // Group combines them in a group
+      console.group(`${dog.name}`)
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(`${dog.name}`)
+
+    })
 
     // counting
+
+    
 
     // timing
 
